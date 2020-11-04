@@ -85,10 +85,10 @@ RCT_EXPORT_METHOD(loadBanner:(NSString *)bannerSizeDescription
     if ([description isEqualToString:@"RECTANGLE"]) {
         return ISBannerSize_RECTANGLE;
     }
-    if ([description isEquazlToString:@"SMART"]) {
+    if ([description isEqualToString:@"SMART"]) {
         return ISBannerSize_SMART;
     }
-    return ISBAnnerSize_BANNER;
+    return ISBannerSize_BANNER;
 }
 
 RCT_EXPORT_METHOD(showBanner) {
