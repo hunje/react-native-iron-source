@@ -69,13 +69,26 @@ RCT_EXPORT_METHOD(loadBanner:(NSString *)bannerSizeDescription
         [self destroyBanner];
     }
     [IronSource loadBannerWithViewController:RCTPresentedViewController()
-                                        size:[[ISBannerSize alloc] initWithDescription:bannerSizeDescription]];
+                                        size:[self getBannerSizeFromDescription:bannerSizeDescription]];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:RCTBridgeWillReloadNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleRCTBridgeWillReloadNotification:)
                                                  name:RCTBridgeWillReloadNotification
                                                object:nil];
+}
+
+- (ISBannerSize *)getBannerSizeFromDescription:(NSString*)description {
+    if ([description isEqualToString:@"LARGE"]) {
+        return ISBannerSize_LARGE;
+    }
+    if ([description isEqualToString:@"RECTANGLE"]) {
+        return ISBannerSize_RECTANGLE;
+    }
+    if ([description isEquazlToString:@"SMART"]) {
+        return ISBannerSize_SMART;
+    }
+    return ISBAnnerSize_BANNER;
 }
 
 RCT_EXPORT_METHOD(showBanner) {
